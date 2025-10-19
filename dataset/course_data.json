@@ -1,0 +1,40 @@
+[
+  {"id":"1","code":"CS 100","title":"Introduction to the Profession","department":"CS","level":"100","credits":2,"description":"Overview of computing as a profession; problem-solving, ethics, and how computing fits within social and economic constraints."},
+  {"id":"2","code":"CS 115","title":"Object-Oriented Programming I","department":"CS","level":"100","credits":2,"description":"First course in programming using objects, classes, control flow, and basic data structures."},
+  {"id":"3","code":"CS 116","title":"Object-Oriented Programming II","department":"CS","level":"100","credits":2,"description":"Continuation of CS 115 with abstraction, modular design, and larger programming projects."},
+  {"id":"4","code":"CS 330","title":"Discrete Structures","department":"CS","level":"300","credits":3,"description":"Logic, sets, functions, relations, graphs, combinatorics, and proof techniques relevant to computing."},
+  {"id":"5","code":"CS 331","title":"Data Structures and Algorithms","department":"CS","level":"300","credits":3,"description":"Design and analysis of lists, trees, hashing, graphs, and algorithmic efficiency."},
+  {"id":"6","code":"CS 350","title":"Computer Organization and Assembly","department":"CS","level":"300","credits":3,"description":"Machine representation, instruction sets, memory organization, and low-level programming."},
+  {"id":"7","code":"CS 351","title":"Systems Programming","department":"CS","level":"300","credits":3,"description":"Process management, files, concurrency primitives, and systems software development in a POSIX environment."},
+  {"id":"8","code":"CS 430","title":"Introduction to Algorithms","department":"CS","level":"400","credits":3,"description":"Algorithm design paradigms including greedy, divide-and-conquer, dynamic programming, and network flows."},
+  {"id":"9","code":"CS 520","title":"Data Integration, Warehousing, and Provenance","department":"CS","level":"500","credits":3,"description":"Introduces key principles of data integration, warehousing, and provenance. Covers schema matching, ETL processes, dimensional modeling, and analytical query optimization."},
+  {"id":"10","code":"CS 525","title":"Advanced Database Organization","department":"CS","level":"500","credits":3,"description":"Physical design, query processing, transactions, and distributed/NoSQL database topics."},
+
+  {"id":"11","code":"ITMD 361","title":"Fundamentals of Web Development","department":"ITM","level":"300","credits":3,"description":"Standards-based HTML, CSS, and JavaScript; semantic markup and responsive design."},
+  {"id":"12","code":"ITMD 362","title":"Human-Computer Interaction and Web Design","department":"ITM","level":"300","credits":3,"description":"User-centered design, accessibility, interaction patterns, and usability evaluation."},
+  {"id":"13","code":"ITMO 340","title":"Introduction to Data Networks and the Internet","department":"ITM","level":"300","credits":3,"description":"Network models, addressing, routing, and basic configuration of IP networks."},
+  {"id":"14","code":"ITMS 448","title":"Cyber Security Technologies","department":"ITM","level":"400","credits":3,"description":"Security concepts, threat models, cryptography basics, and protective technologies in practice."},
+  {"id":"15","code":"ITMM 471","title":"Project Management for IT Professionals","department":"ITM","level":"400","credits":3,"description":"Planning, scheduling, risk, procurement, and team management tailored to technology projects."},
+  {"id":"16","code":"ITMT 531","title":"Object-Oriented System Analysis, Modeling, and Design","department":"ITM","level":"500","credits":3,"description":"UML, use cases, architectural styles, and iterative modeling for complex systems."},
+  {"id":"17","code":"ITMS 543","title":"Vulnerability Analysis and Control","department":"ITM","level":"500","credits":3,"description":"Assessing, prioritizing, and mitigating security vulnerabilities across enterprise environments."},
+
+  {"id":"18","code":"MATH 151","title":"Calculus I","department":"MATH","level":"100","credits":5,"description":"Limits, derivatives, and applications to rates of change and optimization."},
+  {"id":"19","code":"MATH 152","title":"Calculus II","department":"MATH","level":"100","credits":5,"description":"Techniques of integration, sequences and series, and polar/parametric curves."},
+  {"id":"20","code":"MATH 230","title":"Introduction to Discrete Math","department":"MATH","level":"200","credits":3,"description":"Proofs, combinatorics, recurrence relations, and discrete structures used in CS."},
+  {"id":"21","code":"MATH 332","title":"Elementary Linear Algebra","department":"MATH","level":"300","credits":3,"description":"Systems of linear equations; matrix algebra, inverses, determinants, eigenvalues, and eigenvectors, diagonalization; vector spaces, basis, dimension, rank and nullity; inner product spaces, orthonormal bases; quadratic forms."},
+  {"id":"22","code":"MATH 400","title":"Real Analysis","department":"MATH","level":"400","credits":3,"description":"Real numbers, continuous functions; differentiation and Riemann integration. Functions defined by series."},
+  {"id":"23","code":"MATH 512","title":"Partial Differential Equations","department":"MATH","level":"500","credits":3,"description":"Classical PDEs, separation of variables, eigenfunction expansions, and boundary value problems."},
+
+  {"id":"24","code":"PHYS 123","title":"General Physics I: Mechanics","department":"PHYS","level":"100","credits":4,"description":"Kinematics, Newtonian dynamics, energy, momentum, rotation, and oscillations with lab."},
+  {"id":"25","code":"PHYS 221","title":"General Physics II: E&M","department":"PHYS","level":"200","credits":4,"description":"Electric and magnetic fields, circuits, Maxwell’s equations, and electromagnetic waves with lab."},
+  {"id":"26","code":"PHYS 301","title":"Mathematical Methods of Physics","department":"PHYS","level":"300","credits":3,"description":"Linear algebra, complex variables, special functions, and integral transforms for physics."},
+  {"id":"27","code":"PHYS 304","title":"Thermodynamics and Statistical Physics","department":"PHYS","level":"300","credits":3,"description":"Thermodynamic laws, ensembles, and microscopic foundations of macroscopic behavior."},
+  {"id":"28","code":"PHYS 509","title":"Quantum Theory I","department":"PHYS","level":"500","credits":3,"description":"Postulates of quantum mechanics, angular momentum, and exactly solvable systems."},
+
+  {"id":"29","code":"HUM 200","title":"Topics in Humanities","department":"HUM","level":"200","credits":3,"description":"Rotating themes that develop critical reading, research methods, and academic writing."},
+  {"id":"30","code":"HUM 400","title":"Game and Interactive Media Design Capstone 1","department":"HUM","level":"400","credits":3,"description":"Studio Formation, Experience Design, Initial Prototyping, Business Model Canvas, Formal Pitch and Formal Playtesting."},
+
+  {"id":"31","code":"PSYC 221","title":"Introduction to Psychological Science","department":"PSYC","level":"200","credits":3,"description":"Survey of major areas in psychology and the scientific methods used to study behavior."},
+  {"id":"32","code":"PSYC 301","title":"Industrial Psychology","department":"PSYC","level":"300","credits":3,"description":"Survey of practical applications of psychology to problems of business and industry: work attitudes and behavior; employee selection; morale; safety; turnover; absenteeism; and training."},
+  {"id":"33","code":"PSYC 410","title":"Introduction to Rehabilitation and Mental Health Counseling","department":"PSYC","level":"400","credits":3,"description":"Historical, philosophical, ethical, and legal bases of rehabilitation and mental health counseling."}
+]

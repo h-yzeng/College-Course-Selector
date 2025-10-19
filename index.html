@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>College Course Selector</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body> 
-      <a class="skip-link" href="#results">Skip to results</a>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>College Course Selector</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body> 
+    <a class="skip-link" href="#results">Skip to results</a>
 
     <header class="site-header">
-        <div class="container">
+      <div class="container">
         <h1>College Course Selector</h1>
         <p class="muted">
-            Filter by department, level, and credits. Results update instantly.
+          Filter by department, level, and credits. Results update instantly.
         </p>
-        </div>
+      </div>
     </header>
 
     <main class="container">
@@ -27,18 +27,18 @@
             <legend>Departments</legend>
             <div class="chips">
               <label><input type="checkbox" name="dept" value="CS" /> CS</label>
-              <label><input type="checkbox" name="dept" value="IT" /> ITM</label>
+              <label><input type="checkbox" name="dept" value="ITM" /> ITM</label>
               <label><input type="checkbox" name="dept" value="MATH" /> MATH</label>
-              <label><input type="checkbox" name="dept" value="ENG" /> PHYS</label>
+              <label><input type="checkbox" name="dept" value="PHYS" /> PHYS</label>
               <label><input type="checkbox" name="dept" value="HUM" /> HUM</label>
-              <label><input type="checkbox" name="dept" value="BUS" /> PSYC</label>
+              <label><input type="checkbox" name="dept" value="PSYC" /> PSYC</label>
             </div>
           </fieldset>
 
           <fieldset>
-            <legend>Level</legend>
-            <label for="level">Choose level</label>
-            <select id="level" name="level">
+            <legend>Course Level</legend>
+            <label for="level" class="visually-hidden">Select course level</label>
+            <select id="level" name="level" title="Select course level">
               <option value="">All Levels</option>
               <option value="100">100</option>
               <option value="200">200</option>
@@ -49,9 +49,9 @@
           </fieldset>
 
           <fieldset>
-            <legend>Credits</legend>
-            <label for="credits">Credit Hourss</label>
-            <select id="credits" name="credits">
+            <legend>Credit Hours</legend>
+            <label for="credits" class="visually-hidden">Select minimum credit hours</label>
+            <select id="credits" name="credits" title="Select minimum credit hours">
               <option value="">Any</option>
               <option value="1">1+</option>
               <option value="2">2+</option>
@@ -61,8 +61,7 @@
           </fieldset>
 
           <fieldset>
-            <legend>Search</legend>
-            <label for="query">Search title, code, department, or description</label>
+            <legend>Search Courses</legend>
             <input
               id="query"
               name="query"
@@ -70,6 +69,7 @@
               placeholder="e.g., Algorithms, MATH 240"
               autocomplete="off"
               inputmode="search"
+              aria-label="Search title, code, department, or description"
             />
           </fieldset>
 
@@ -118,10 +118,10 @@
 
     <footer class="site-footer">
       <div class="container">
-        <p>2025 © <span id="year"></span>Course Selector</p>
+        <p>© <span id="year"></span> Course Selector</p>
       </div>
     </footer>
     
-        <script src="script.js"></script>
-    </body>
+    <script src="script.js"></script>
+  </body>
 </html>
