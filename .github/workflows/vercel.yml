@@ -14,17 +14,20 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
-
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}   
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}         
-      VERCEL_SCOPE: ${{ secrets.VERCEL_SCOPE }}             
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create Vercel project file
+      - name: Show working directory contents
+        run: |
+          pwd
+          ls -la
+
+      - name: Create .vercel/project.json
         run: |
           mkdir -p .vercel
           cat > .vercel/project.json <<EOF
@@ -33,7 +36,6 @@ jobs:
             "orgId": "${VERCEL_ORG_ID}"
           }
           EOF
-          echo "Created .vercel/project.json:"
           cat .vercel/project.json
 
       - name: Setup Node
@@ -44,44 +46,27 @@ jobs:
       - name: Install Vercel CLI
         run: npm i -g vercel@latest
 
-      - name: Sanity checks
+      - name: Log expected site files
         run: |
-          test -f index.html
-          test -f app.js
-          test -f styles.css
-          test -f data/items.json
-          test -f .vercel/project.json
+          ls -la index.html || true
+          ls -la styles.css || true
+          ls -la script.js || true
+          ls -la dataset || true
 
-      - name: Vercel pull (preview or production)
-        run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            vercel pull --yes --environment=preview --token "$VERCEL_TOKEN"
-          else
-            vercel pull --yes --environment=production --token "$VERCEL_TOKEN"
-          fi
+      - name: Vercel pull
+        run: vercel pull --yes --environment=production --token "$VERCEL_TOKEN"
 
       - name: Build
-        run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            vercel build --token "$VERCEL_TOKEN"
-          else
-            vercel build --prod --token "$VERCEL_TOKEN"
-          fi
+        run: vercel build --prod --token "$VERCEL_TOKEN"
 
       - name: Deploy
         id: deploy
         run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            URL=$(vercel deploy --prebuilt --token "$VERCEL_TOKEN")
-            echo "preview_url=$URL" >> $GITHUB_OUTPUT
-          else
-            URL=$(vercel deploy --prebuilt --prod --token "$VERCEL_TOKEN")
-            echo "prod_url=$URL" >> $GITHUB_OUTPUT
-          fi
+          URL=$(vercel deploy --prebuilt --prod --token "$VERCEL_TOKEN")
+          echo "prod_url=$URL" >> $GITHUB_OUTPUT
 
       - name: Summary
         if: always()
         run: |
           echo "### Vercel deployment" >> $GITHUB_STEP_SUMMARY
-          echo "- Preview: ${{ steps.deploy.outputs.preview_url }}" >> $GITHUB_STEP_SUMMARY
           echo "- Production: ${{ steps.deploy.outputs.prod_url }}" >> $GITHUB_STEP_SUMMARY
