@@ -14,27 +14,27 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
+
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      VERCEL_SCOPE: ${{ secrets.VERCEL_SCOPE }}       
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_NAME: college-course-selector
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}   
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}         
+      VERCEL_SCOPE: ${{ secrets.VERCEL_SCOPE }}             
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Debug (files & env)
+      - name: Create Vercel project file
         run: |
-          echo "Node (pre):" && node -v || true
-          echo "NPM  (pre):" && npm -v  || true
-          echo "Repo files:" && ls -la
-          echo ".vercel dir:" && ls -la .vercel || true
-          if [ -f .vercel/project.json ]; then
-            echo "project.json:" && cat .vercel/project.json
-          else
-            echo "project.json not found"
-          fi
+          mkdir -p .vercel
+          cat > .vercel/project.json <<EOF
+          {
+            "projectId": "${VERCEL_PROJECT_ID}",
+            "orgId": "${VERCEL_ORG_ID}"
+          }
+          EOF
+          echo "Created .vercel/project.json:"
+          cat .vercel/project.json
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -43,19 +43,6 @@ jobs:
 
       - name: Install Vercel CLI
         run: npm i -g vercel@latest
-
-      - name: Link project (non-interactive)
-        run: |
-          if [ ! -f ".vercel/project.json" ]; then
-            echo "Linking to Vercel project '$VERCEL_PROJECT_NAME' under scope '$VERCEL_SCOPE'..."
-            vercel link --yes \
-              --project "$VERCEL_PROJECT_NAME" \
-              --scope "$VERCEL_SCOPE" \
-              --token "$VERCEL_TOKEN"
-          else
-            echo "project.json already present; skipping link."
-          fi
-          echo "Linked file:" && cat .vercel/project.json
 
       - name: Sanity checks
         run: |
