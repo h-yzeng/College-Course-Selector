@@ -4,11 +4,124 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Course Selector  </title>
+        <title>College Course Selector</title>
         <link rel="stylesheet" href="styles.css">
     </head>
     <body> 
-        
+      <a class="skip-link" href="#results">Skip to results</a>
+
+    <header class="site-header">
+        <div class="container">
+        <h1>College Course Selector</h1>
+        <p class="muted">
+            Filter by department, level, and credits. Results update instantly.
+        </p>
+        </div>
+    </header>
+
+    <main class="container">
+      <section aria-labelledby="filters-title" class="filters">
+        <h2 id="filters-title">Filters</h2>
+        <form id="filters-form">
+          <fieldset>
+            <legend>Departments</legend>
+            <div class="chips">
+              <label><input type="checkbox" name="dept" value="CS" /> CS</label>
+              <label><input type="checkbox" name="dept" value="IT" /> ITM</label>
+              <label><input type="checkbox" name="dept" value="MATH" /> MATH</label>
+              <label><input type="checkbox" name="dept" value="ENG" /> PHYS</label>
+              <label><input type="checkbox" name="dept" value="HUM" /> HUM</label>
+              <label><input type="checkbox" name="dept" value="BUS" /> PSYC</label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Level</legend>
+            <label for="level">Choose level</label>
+            <select id="level" name="level">
+              <option value="">All Levels</option>
+              <option value="100">100</option>
+              <option value="200">200</option>
+              <option value="300">300</option>
+              <option value="400">400</option>
+              <option value="500">Graduate Level (500)</option>
+            </select>
+          </fieldset>
+
+          <fieldset>
+            <legend>Credits</legend>
+            <label for="credits">Credit Hourss</label>
+            <select id="credits" name="credits">
+              <option value="">Any</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+            </select>
+          </fieldset>
+
+          <fieldset>
+            <legend>Search</legend>
+            <label for="query">Search title, code, department, or description</label>
+            <input
+              id="query"
+              name="query"
+              type="search"
+              placeholder="e.g., Algorithms, MATH 240"
+              autocomplete="off"
+              inputmode="search"
+            />
+          </fieldset>
+
+          <div class="actions">
+            <button type="reset" id="reset-btn">Clear filters</button>
+          </div>
+        </form>
+      </section>
+
+      <section aria-labelledby="results-title" id="results">
+        <div class="results-head">
+          <h2 id="results-title">Results</h2>
+          <p id="result-count" aria-live="polite" class="muted">
+            Loading courses…
+          </p>
+        </div>
+
+        <div id="cards" class="grid" role="list"></div>
+
+        <template id="card-template">
+          <article class="card" role="listitem">
+            <header class="card-head">
+              <div class="code"></div>
+              <h3 class="title"></h3>
+            </header>
+            <dl class="meta">
+              <div><dt>Department</dt><dd class="department"></dd></div>
+              <div><dt>Level</dt><dd class="level"></dd></div>
+              <div><dt>Credits</dt><dd class="credits"></dd></div>
+            </dl>
+            <p class="desc"></p>
+          </article>
+        </template>
+
+        <p id="empty-state" class="muted hidden">
+          No courses match your filters. Try clearing a few options.
+        </p>
+      </section>
+
+      <noscript>
+        <p class="error">
+          This page requires JavaScript to filter and display results.
+        </p>
+      </noscript>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>2025 © <span id="year"></span>Course Selector</p>
+      </div>
+    </footer>
+    
         <script src="script.js"></script>
     </body>
 </html>
