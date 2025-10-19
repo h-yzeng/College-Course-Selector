@@ -1,0 +1,77 @@
+name: Deploy to Vercel (Static Site)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sanity checks
+        run: |
+          test -f index.html
+          test -f app.js
+          test -f styles.css
+          test -f data/items.json
+          test -f .vercel/project.json
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: Install Vercel CLI
+        run: npm i -g vercel@latest
+
+      - name: Vercel pull (preview or production)
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            vercel pull --yes --environment=preview --token="$VERCEL_TOKEN"
+          else
+            vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+          fi
+
+      - name: Build
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            vercel build --token="$VERCEL_TOKEN"
+          else
+            vercel build --prod --token="$VERCEL_TOKEN"
+          fi
+
+      - name: Deploy
+        id: deploy
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            URL=$(vercel deploy --prebuilt --token="$VERCEL_TOKEN")
+            echo "preview_url=$URL" >> $GITHUB_OUTPUT
+          else
+            URL=$(vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN")
+            echo "prod_url=$URL" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Post URL to summary
+        if: always()
+        run: |
+          {
+            echo "### Vercel deployment"
+            echo ""
+            echo "- **Preview:** ${{ steps.deploy.outputs.preview_url }}"
+            echo "- **Production:** ${{ steps.deploy.outputs.prod_url }}"
+          } >> $GITHUB_STEP_SUMMARY
